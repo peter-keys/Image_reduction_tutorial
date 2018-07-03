@@ -1,0 +1,63 @@
+;+
+; ROUTINE:    ROSA_nonphotospheric_destretch
+;
+; PURPOSE:    Creates a destretched datacube based upon a co-aligned input datacube
+;
+; USEAGE:     new_datacube = ROSA_destrech(datacube,xsize,ysize,zsize,cadence)
+;
+; INPUT:      xsize = x dimension of the input datacube
+;             ysize = y dimension of the input datacube
+;             zsize = z dimension of the input datacube
+;             cadence = cadence between images after reconstruction
+;
+; OUTPUT:     Destretched ROSA datacube
+;                 
+; AUTHOR:   David B. Jess, November '08
+;
+;-
+
+FUNCTION ROSA_nonphotospheric_destretch,datacube,param_file
+
+RESTORE,param_file
+
+loadct,3,/silent
+
+xsize2 = N_ELEMENTS(datacube[*,0,0])
+ysize2 = N_ELEMENTS(datacube[0,*,0])
+zsize2 = N_ELEMENTS(datacube[0,0,*])
+
+destretched_images  = datacube
+destretched_images[*] = 0.
+
+value = N_ELEMENTS(rdisp_all[*,0,0,0])
+new_rdisp_all = FLTARR(value,(N_ELEMENTS(rdisp_all[0,*,0,0])),(N_ELEMENTS(rdisp_all[0,0,*,0])),zsize2)
+FOR i = 0,(value-1) DO BEGIN
+    temp = REFORM(rdisp_all[i,*,*,*])
+    temp = CONGRID(temp,(N_ELEMENTS(rdisp_all[0,*,0,0])),(N_ELEMENTS(rdisp_all[0,0,*,0])),zsize2)
+    new_rdisp_all[i,*,*,*] = temp
+ENDFOR
+
+value = N_ELEMENTS(disp_all_polycor[*,0,0,0])
+new_disp_all_polycor = FLTARR(value,(N_ELEMENTS(disp_all_polycor[0,*,0,0])),(N_ELEMENTS(disp_all_polycor[0,0,*,0])),zsize2)
+FOR i = 0,(value-1) DO BEGIN
+    temp = REFORM(disp_all_polycor[i,*,*,*])
+    temp = CONGRID(temp,(N_ELEMENTS(disp_all_polycor[0,*,0,0])),(N_ELEMENTS(disp_all_polycor[0,0,*,0])),zsize2)
+    new_disp_all_polycor[i,*,*,*] = temp
+ENDFOR
+
+;rdisp_all = CONGRID(rdisp_all,2,(N_ELEMENTS(rdisp_all[0,*,0,0])),(N_ELEMENTS(rdisp_all[0,0,*,0])),zsize2)
+;disp_all_polycor = CONGRID(disp_all_polycor,2,(N_ELEMENTS(disp_all_polycor[0,*,0,0])),(N_ELEMENTS(disp_all_polycor[0,0,*,0])),zsize2)
+
+FOV_mask = BYTARR(xsize2,ysize2)
+FOV_mask[*] = 1.
+
+window,0,title='Destretched ROSA Images',xsize=xsize2,ysize=ysize2
+FOR i=0,(zsize2-1),1 DO BEGIN 
+    test_image = doreg(datacube[*,*,i], new_rdisp_all[*,*,*,i], new_disp_all_polycor[*,*,*,i]) 
+    destretched_images[*,*,i] = test_image 
+    ibis_tvmask,destretched_images[*,*,i],FOV_mask 
+ENDFOR
+
+RETURN,destretched_images
+
+END
