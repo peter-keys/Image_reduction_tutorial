@@ -1,0 +1,16 @@
+KISIP Package.
+
+Please note that the code contained within the KISIP section of this repository is not actually my code. The authors are F. Woger, O. von der Luhe and K. Reardon.
+
+The original source for this was: https://forge.kis.uni-freiburg.de/kisip/
+However, that source appears to be down, so I have included this with the ROSA reduction piepline as it is used by the pipeline to speckle the data.
+
+The paper related to this code is: Woger, F., von der Luhe, O., & Reardon, K., 2008, A&A, 488, 375 titled "Speckle interferometry with adaptive optics corrected solar data".
+
+As stated I have included this code here as the original source is gone and this is essential for Speckling ROSA data. 
+I may not be much help for you if you have issues setting this code up or troubleshooting while you are using it (so keep that in mind).
+Also, this code is set up to work on my system. As such some codes in this directory are perhaps uneccessary for you or may not be needed.
+For example, our cluster utilises the slurm queue manager, which you may not. Therefore, the slurm files may not be useful. I have included them in case they are.
+Also, sgX refers to partitions within our cluster for queuing speckle runs (they are probably not needed for you).
+
+There is a manual within the /notes/ folder to help you get set up. 
