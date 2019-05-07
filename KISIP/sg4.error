@@ -1,0 +1,12 @@
+Reading noise data: .noise64x64...failed! Trying to generate new file.
+Alas...no good noise data file specified: 
+Reading image data: /data/rosa3/oldrosa1/Speckle/Data/Raw/31Dec2013/Halpha/1stbatch/kisip.raw.batch00.000...done!
+Waking up slaves...done!
+Starting calculation.
+Lockpoint set to [8, 7].
+Master done! Used time: 3.00 seconds
+Reading image data: /data/rosa3/oldrosa1/Speckle/Data/Raw/31Dec2013/Halpha/1stbatch/kisip.raw.batch00.001...done!
+Waking up slaves...done!
+Starting calculation.
+Lockpoint set to [6, 6].
+Master done! Used time: 3.00 seconds

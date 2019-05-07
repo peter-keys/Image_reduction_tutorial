@@ -1,0 +1,2 @@
+[mpiexec@starbase.mp.qub.ac.uk] Sending Ctrl-C to processes as requested
+[mpiexec@starbase.mp.qub.ac.uk] Press Ctrl-C again to force abort
