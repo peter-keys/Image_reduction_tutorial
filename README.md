@@ -28,7 +28,7 @@ Basic tenets of the code:
 
 ## KISIP
 
-Note, I am /not/ responsible for KISIP. It can be tricky to set up and I would suggets that you do that in advance (it has been 10years since I set up KISIP myself, so I may not be very useful in troubleshooting installation....)
+Note, I am //not// responsible for KISIP. It can be tricky to set up and I would suggets that you do that in advance (it has been 10years since I set up KISIP myself, so I may not be very useful in troubleshooting installation....)
 
 See the following paper for details on KISIP
 http://spie.org/Publications/Proceedings/Paper/10.1117/12.788062
