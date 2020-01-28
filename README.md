@@ -1,4 +1,6 @@
-# ROSA_reduction_pipeline
+# A Tutorial for Reconstructing Ground-based Data 
+
+## ROSA_reduction_pipeline
 Pipeline for reducing ROSA data to make ROSA images science-ready.
 Developed as part of the SOLARNET project.
 Primarily written for SSWIDL. 
