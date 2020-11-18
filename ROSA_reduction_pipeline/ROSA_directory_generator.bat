@@ -40,15 +40,14 @@
 
 	; If you have only one target, leave 'Target1' as an empty string (no characters, no 
 	;	spaces) and don't run the Target2 scripts (in the *****'d section below)
-Date_Obs = '11Oct2016/'
-PI = 'Fischer/'
-Target1 = '1sttarget/'
-Target2 = '2ndtarget/'
+Date_Obs = '08Oct2013/'
+PI = 'StudentName/'
+Target1 = 'AR11857/'
 
 Filter1 = 'Gband/'
 Filter2 = 'Continuum4170/'
 Filter3 = 'CaK/'
-Filter4 = 'Hbeta/'
+;Filter4 = 'Hbeta/'
 
 ;-----------------------------------
 ; Paths for pre-speckled raw data
@@ -65,7 +64,7 @@ raw_directory_path = '/data/rosa3/oldrosa1/Speckle/Data/Raw/'
 FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target1+Filter1,/NOEXPAND_PATH
 FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target1+Filter2,/NOEXPAND_PATH
 FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target1+Filter3,/NOEXPAND_PATH
-FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target1+Filter4,/NOEXPAND_PATH
+;FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target1+Filter4,/NOEXPAND_PATH
 
 	; Change the permissions if you need to (QUB people should do this)
 FILE_CHMOD,raw_directory_path+Date_Obs,/A_EXECUTE,/A_WRITE,/A_READ
@@ -74,7 +73,7 @@ FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1,/A_EXECUTE,/A_WRITE,/A_READ
 FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1+Filter1,/A_EXECUTE,/A_WRITE,/A_READ
 FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1+Filter2,/A_EXECUTE,/A_WRITE,/A_READ
 FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1+Filter3,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
 
 
 ;*************************************************************************************
@@ -82,19 +81,19 @@ FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1+Filter4,/A_EXECUTE,/A_WRITE,/A
 	; - OTHERWISE SKIP THIS SECTION COMPLETELY
 	
 	; Have to create an individual path for each filter
-FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter1,/NOEXPAND_PATH
-FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter2,/NOEXPAND_PATH
-FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter3,/NOEXPAND_PATH
-FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter4,/NOEXPAND_PATH
+;FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter1,/NOEXPAND_PATH
+;FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter2,/NOEXPAND_PATH
+;FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter3,/NOEXPAND_PATH
+;FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target2+Filter4,/NOEXPAND_PATH
 
 	; Change the permissions if you need to (QUB people should do this)
-FILE_CHMOD,raw_directory_path+Date_Obs,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,raw_directory_path+Date_Obs+PI,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter1,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter2,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter3,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs+PI,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter1,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter2,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter3,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target2+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
 ;*************************************************************************************
 
 ;-----------------------------------
@@ -164,53 +163,53 @@ FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'calib/',/A_EXECUT
 
 	; Have to create an individual path for each filter and each speckled/mid_processed/processed directory
 	
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'speckled/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'mid_processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'calib/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'speckled/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'mid_processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'calib/',/NOEXPAND_PATH
 
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'speckled/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'mid_processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'calib/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'speckled/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'mid_processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'calib/',/NOEXPAND_PATH
 
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'speckled/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'mid_processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'calib/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'speckled/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'mid_processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'calib/',/NOEXPAND_PATH
 
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'speckled/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'mid_processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'calib/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'speckled/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'mid_processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'calib/',/NOEXPAND_PATH
 
 	; Change the permissions if you need to (QUB people should do this)
-FILE_CHMOD,reduced_directory_path+Date_Obs,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter1+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
 
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter2+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
 
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter3+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
 
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target2+Filter4+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
 
 ;*************************************************************************************
 ;-----------------------------------------------------------------------------------------------------------
