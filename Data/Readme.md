@@ -59,15 +59,15 @@ In ROSA you should have folders labeled 'CaK', 'Continuum4170' and 'Gband'. Thes
 - das1_rosa_flats_2013-10-08_23.02.19_0004.fit
 
 
-For completeness, in 'observer_logs' you should have the following files:
+For completeness, in **'observer_logs'** you should have the following files:
 
-tuning.display.6173.20131008_125502.jpeg
-oct_08_obslogs.pdf
-log_08Oct2013.txt
-keys506_6173.08oct2013.txt
-keys506_6173.08oct2013.ibis
-ibis.polarimeter.volts.6173.txt
-LOG_DCSS.20131008
-08Oct2013.IR_linearity.sav
+- tuning.display.6173.20131008_125502.jpeg
+- oct_08_obslogs.pdf
+- log_08Oct2013.txt
+- keys506_6173.08oct2013.txt
+- keys506_6173.08oct2013.ibis
+- ibis.polarimeter.volts.6173.txt
+- LOG_DCSS.20131008
+- 08Oct2013.IR_linearity.sav
 
 The files in observer_logs are included for completeness and to give you an idea of how service mode data can be presented. These will not be needed for the tutorial.
