@@ -84,7 +84,7 @@
 	; Input the raw directory and filter you are processing to saving things out
 data_dir = '/data/solarstore2/ROSA_raw_files/08Oct2013/raw/'							; Directory of raw data from the telescope
 raw_dir = '/data/solarstore2/ROSA_raw_files/08Oct2013/prespeckle/StudentName/AR11857/'					; Directory of raw specklegrams (pre-speckled raw data)
-reduced_dir = '/data/solarstore2/ROSA_raw_files/14Oct2016/processing/StudentName/AR11857/'					; Directory of processed images (post-speckle data)
+reduced_dir = '/data/solarstore2/ROSA_raw_files/08Oct2013/processing/StudentName/AR11857/'					; Directory of processed images (post-speckle data)
 
 	; Comment out filters not currently being processed 
 ;filter = 'Gband'
