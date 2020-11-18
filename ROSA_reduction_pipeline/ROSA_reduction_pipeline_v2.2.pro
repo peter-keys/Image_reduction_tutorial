@@ -82,27 +82,27 @@
 ;=========================================================================================================================
 
 	; Input the raw directory and filter you are processing to saving things out
-data_dir = '/data/solarstore2/ROSA_raw_files/14Oct2016/raw/'							; Directory of raw data from the telescope
-raw_dir = '/data/solarstore2/ROSA_raw_files/14Oct2016/prespeckle/Long/'					; Directory of raw specklegrams (pre-speckled raw data)
-reduced_dir = '/data/solarstore2/ROSA_raw_files/14Oct2016/processing/Long/'					; Directory of processed images (post-speckle data)
+data_dir = '/data/solarstore2/ROSA_raw_files/08Oct2013/raw/'							; Directory of raw data from the telescope
+raw_dir = '/data/solarstore2/ROSA_raw_files/08Oct2013/prespeckle/StudentName/AR11857/'					; Directory of raw specklegrams (pre-speckled raw data)
+reduced_dir = '/data/solarstore2/ROSA_raw_files/14Oct2016/processing/StudentName/AR11857/'					; Directory of processed images (post-speckle data)
 
 	; Comment out filters not currently being processed 
 ;filter = 'Gband'
-;filter = 'Continuum4170'
+filter = 'Continuum4170'
 ;filter = 'Continuum3500'
 ;filter = 'CaK'
-filter = 'Hbeta'
+;filter = 'Hbeta'
 
 	; Input the image dimensions of the camera you are processing
-;imagedim = [1004,1002]
-imagedim = [512,512]
+imagedim = [1004,1002]
+;imagedim = [512,512]
 
 	; Pointing information for later - manually input it
 	;	x = E/W with W +VE
 	;	y = N/S with N +VE
 	;
 	;	e.g N5.8,E3.2 = [(-3.2),5.8]
-pointing = [67.6,(-16.3)]	;10th 1st = [14.5,(-15.4)] 2nd = [15.0,(-15.4)]
+pointing = [15.2,-2.75]		;08th 15.2W, 2.75S
 ;12Oct2016 0.3,3.1 1st
 
 	;Check the directory you are currently in:
@@ -125,7 +125,6 @@ print,' '
 ;---------------------------------------------------------------------------------------
 
 files = FILE_SEARCH('*darks*')
-;files = FILE_SEARCH('/data/rosa4/ROSA_raw_files/12Oct2016/DAS1_12Oct2016_Fischer/das1_rosa_darks_2016-10-12_19.33.40_*.fit')
 IF N_ELEMENTS(files) gt 14 THEN files = files[0:14]
 
 image = FLTARR(1004,1002)
@@ -148,7 +147,6 @@ ave_dark = REBIN(FLOAT(ave_dark),1004,1002,1)
 ;---------------------------------------------------------------------------------------
 
 files = FILE_SEARCH('*flat*')
-;files = FILE_SEARCH('/data/rosa4/ROSA_raw_files/12Oct2016/DAS1_12Oct2016_Fischer/das1_rosa_flats_2016-10-12_20.15.20_*')
 IF N_ELEMENTS(files) gt 14 THEN files = files[0:14]
 
 image = FLTARR(1004,1002)
@@ -177,7 +175,6 @@ frame_rate_header = h[11]
 
 	; Save out the Average Dark/Flat in case it is needed in the future...
 
-;SAVE,FILENAME=reduced_dir+'/'+filter+'/calib/'+'Average_dark_flat_'+filter+'.sav',ave_dark,ave_flat,frame_rate_header
 SAVE,FILENAME=reduced_dir+filter+'/calib/'+'Average_dark_flat_'+filter+'.sav',ave_dark,ave_flat,frame_rate_header
 
 ;=========================================================================================================================
@@ -235,7 +232,7 @@ SAVE,FILENAME=reduced_dir+filter+'/calib/'+'Average_dark_flat_'+filter+'.sav',av
 	; Read in your raw ROSA data files taken from the rosa system and on your HDDs
 	; Be careful here to get your correct pointing as multiple pointings may be present for a given day
 	
-files = FILE_SEARCH('/data/solarstore2/ROSA_raw_files/10Oct2016/raw/DAS2_10Oct2016_Long/first_pointing/das2_rosa_2016-10-10_18.13.14_*')
+files = FILE_SEARCH('/data/solarstore2/ROSA_raw_files/10Oct2016/raw/Continuum4170/das2_rosa_2013-10-08_20.06.41_*')
 save_directory = raw_dir+filter+'/
 
 	; burst_number is the number of images you want to use for your average specklegram
@@ -1000,6 +997,7 @@ xstepper,test_data,xsize=600,ysize=600
 ;	** YOU NEED TO EDIT THE FILE @ROSA_data_properties.bat WITH INFORMATION FOR YOUR OBSERVATION CAMPAIGN **
 ;=========================================================================================================================
 
+; CHANGE TO YOUR SETUP
 @/home/phk/idl/ROSA/ROSA_pipeline_v1.1/ROSA_data_properties.bat
 
 print,ISO_stime									; Check you are using the right data set time
@@ -1182,10 +1180,10 @@ cak_scale =
 cak_offsets = [,]
 
 ;DBJ_COALIGN_IMGAES,continuum_dots,hbeta_dots
-hbeta_bulk_rotation = 0.
-hbeta_fine_rotation = 
-hbeta_scale = 
-hbeta_offsets = [,]
+;hbeta_bulk_rotation = 0.
+;hbeta_fine_rotation = 
+;hbeta_scale = 
+;hbeta_offsets = [,]
 
 	; Save these out as string arrays for future use
 
@@ -1203,14 +1201,14 @@ CaK_camera_alignment[2] = 'Relative scale of camera = '+arr2str(cak_scale,/trim)
 CaK_camera_alignment[3] = 'Offset in x of camera = '+arr2str(cak_offsets[0],/trim)
 CaK_camera_alignment[4] = 'Off set in y of camera = '+arr2str(cak_offsets[1],/trim)
 
-Hbeta_camera_alignment = STRARR(5)
-Hbeta_camera_alignment[0] = 'Bulk rotation of camera = '+arr2str(hbeta_bulk_rotation,/trim)
-Hbeta_camera_alignment[1] = 'Fine-scale rotation of camera = '+arr2str(hbeta_fine_rotation,/trim)
-Hbeta_camera_alignment[2] = 'Relative scale of camera = '+arr2str(hbeta_scale,/trim)
-Hbeta_camera_alignment[3] = 'Offset in x of camera = '+arr2str(hbeta_offsets[0],/trim)
-Hbeta_camera_alignment[4] = 'Off set in y of camera = '+arr2str(hbeta_offsets[1],/trim)
+;Hbeta_camera_alignment = STRARR(5)
+;Hbeta_camera_alignment[0] = 'Bulk rotation of camera = '+arr2str(hbeta_bulk_rotation,/trim)
+;Hbeta_camera_alignment[1] = 'Fine-scale rotation of camera = '+arr2str(hbeta_fine_rotation,/trim)
+;Hbeta_camera_alignment[2] = 'Relative scale of camera = '+arr2str(hbeta_scale,/trim)
+;Hbeta_camera_alignment[3] = 'Offset in x of camera = '+arr2str(hbeta_offsets[0],/trim)
+;Hbeta_camera_alignment[4] = 'Off set in y of camera = '+arr2str(hbeta_offsets[1],/trim)
 
-SAVE,FILENAME=reduced_dir+'Camera_coalignment_calibration_info.sav',Gband_camera_alignment,CaK_camera_alignment,Hbeta_camera_alignment
+SAVE,FILENAME=reduced_dir+'Camera_coalignment_calibration_info.sav',Gband_camera_alignment,CaK_camera_alignment;,Hbeta_camera_alignment
 
 ;=========================================================================================================================
 ;					APPLY ALIGNMENT VALUES TO THE DATA
@@ -1221,8 +1219,8 @@ SAVE,FILENAME=reduced_dir+'Camera_coalignment_calibration_info.sav',Gband_camera
 ;=========================================================================================================================
 
 	; Load in the filters etc again to make it easier
-filter = 'Gband'
-;filter = 'Continuum4170'
+;filter = 'Gband'
+filter = 'Continuum4170'
 ;filter = 'CaK'
 ;filter = 'Hbeta'
 
