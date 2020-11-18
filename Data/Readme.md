@@ -11,52 +11,52 @@ The data is stored in RawData and consists of the following
 
 In ROSA you should have folders labeled 'CaK', 'Continuum4170' and 'Gband'. These will contain the following files:
 
-CaK
+**CaK**
 
-DJCcam_data_15.33.28._X01.fits
-DJCcam_data_22.02.34.flat.fits
-DJCcam_data_20.36.07.dark.fits
-DJCcam_data_21.34.33.target.fits
-DJCcam_data_21.51.28.linegrid.fits
-DJCcam_data_21.59.02.dotgrid.fits
+- DJCcam_data_15.33.28._X01.fits
+- DJCcam_data_22.02.34.flat.fits
+- DJCcam_data_20.36.07.dark.fits
+- DJCcam_data_21.34.33.target.fits
+- DJCcam_data_21.51.28.linegrid.fits
+- DJCcam_data_21.59.02.dotgrid.fits
 
-Continuum4170
+**Continuum4170**
 
-das2_rosa_2013-10-08_20.06.41_0000.fit
-das2_rosa_2013-10-08_20.06.41_0001.fit
-das2_rosa_2013-10-08_20.06.41_0002.fit
-das2_rosa_2013-10-08_22.34.23_0000.fit
-das2_rosa_2013-10-08_22.51.12_0000.fit
-das2_rosa_2013-10-08_22.58.47_0000.fit
-das2_rosa_darks_2013-10-08_21.35.53_0000.fit
-das2_rosa_darks_2013-10-08_21.35.53_0001.fit
-das2_rosa_darks_2013-10-08_21.35.53_0002.fit
-das2_rosa_darks_2013-10-08_21.35.53_0003.fit
-das2_rosa_darks_2013-10-08_21.35.53_0004.fit
-das2_rosa_flats_2013-10-08_23.02.19_0000.fit
-das2_rosa_flats_2013-10-08_23.02.19_0001.fit
-das2_rosa_flats_2013-10-08_23.02.19_0002.fit
-das2_rosa_flats_2013-10-08_23.02.19_0003.fit
-das2_rosa_flats_2013-10-08_23.02.19_0004.fit
+- das2_rosa_2013-10-08_20.06.41_0000.fit
+- das2_rosa_2013-10-08_20.06.41_0001.fit
+- das2_rosa_2013-10-08_20.06.41_0002.fit
+- das2_rosa_2013-10-08_22.34.23_0000.fit
+- das2_rosa_2013-10-08_22.51.12_0000.fit
+- das2_rosa_2013-10-08_22.58.47_0000.fit
+- das2_rosa_darks_2013-10-08_21.35.53_0000.fit
+- das2_rosa_darks_2013-10-08_21.35.53_0001.fit
+- das2_rosa_darks_2013-10-08_21.35.53_0002.fit
+- das2_rosa_darks_2013-10-08_21.35.53_0003.fit
+- das2_rosa_darks_2013-10-08_21.35.53_0004.fit
+- das2_rosa_flats_2013-10-08_23.02.19_0000.fit
+- das2_rosa_flats_2013-10-08_23.02.19_0001.fit
+- das2_rosa_flats_2013-10-08_23.02.19_0002.fit
+- das2_rosa_flats_2013-10-08_23.02.19_0003.fit
+- das2_rosa_flats_2013-10-08_23.02.19_0004.fit
 
-Gband
+**Gband**
 
-das1_rosa_2013-10-08_20.06.41_0000.fit
-das1_rosa_2013-10-08_20.06.41_0001.fit
-das1_rosa_2013-10-08_20.06.41_0002.fit
-das1_rosa_2013-10-08_22.34.23_0000.fit
-das1_rosa_2013-10-08_22.51.12_0000.fit
-das1_rosa_2013-10-08_22.58.47_0000.fit
-das1_rosa_darks_2013-10-08_21.35.53_0000.fit
-das1_rosa_darks_2013-10-08_21.35.53_0001.fit
-das1_rosa_darks_2013-10-08_21.35.53_0002.fit
-das1_rosa_darks_2013-10-08_21.35.53_0003.fit
-das1_rosa_darks_2013-10-08_21.35.53_0004.fit
-das1_rosa_flats_2013-10-08_23.02.19_0000.fit
-das1_rosa_flats_2013-10-08_23.02.19_0001.fit
-das1_rosa_flats_2013-10-08_23.02.19_0002.fit
-das1_rosa_flats_2013-10-08_23.02.19_0003.fit
-das1_rosa_flats_2013-10-08_23.02.19_0004.fit
+- das1_rosa_2013-10-08_20.06.41_0000.fit
+- das1_rosa_2013-10-08_20.06.41_0001.fit
+- das1_rosa_2013-10-08_20.06.41_0002.fit
+- das1_rosa_2013-10-08_22.34.23_0000.fit
+- das1_rosa_2013-10-08_22.51.12_0000.fit
+- das1_rosa_2013-10-08_22.58.47_0000.fit
+- das1_rosa_darks_2013-10-08_21.35.53_0000.fit
+- das1_rosa_darks_2013-10-08_21.35.53_0001.fit
+- das1_rosa_darks_2013-10-08_21.35.53_0002.fit
+- das1_rosa_darks_2013-10-08_21.35.53_0003.fit
+- das1_rosa_darks_2013-10-08_21.35.53_0004.fit
+- das1_rosa_flats_2013-10-08_23.02.19_0000.fit
+- das1_rosa_flats_2013-10-08_23.02.19_0001.fit
+- das1_rosa_flats_2013-10-08_23.02.19_0002.fit
+- das1_rosa_flats_2013-10-08_23.02.19_0003.fit
+- das1_rosa_flats_2013-10-08_23.02.19_0004.fit
 
 
 For completeness, in 'observer_logs' you should have the following files:
