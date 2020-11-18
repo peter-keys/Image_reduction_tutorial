@@ -232,7 +232,7 @@ SAVE,FILENAME=reduced_dir+filter+'/calib/'+'Average_dark_flat_'+filter+'.sav',av
 	; Read in your raw ROSA data files taken from the rosa system and on your HDDs
 	; Be careful here to get your correct pointing as multiple pointings may be present for a given day
 	
-files = FILE_SEARCH('/data/solarstore2/ROSA_raw_files/10Oct2016/raw/Continuum4170/das2_rosa_2013-10-08_20.06.41_*')
+files = FILE_SEARCH('/data/solarstore2/RawData/ROSA/Continuum4170/das2_rosa_2013-10-08_20.06.41_*')
 save_directory = raw_dir+filter+'/
 
 	; burst_number is the number of images you want to use for your average specklegram
