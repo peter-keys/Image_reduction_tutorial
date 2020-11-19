@@ -58,7 +58,7 @@ Filter3 = 'CaK/'
 ;-----------------------------------
 
 	; Raw Data Folder:
-raw_directory_path = '/data/rosa3/oldrosa1/Speckle/Data/Raw/'
+raw_directory_path = '/Raw/'
 
 	; Have to create an individual path for each filter
 FILE_MKDIR,raw_directory_path+Date_Obs+PI+Target1+Filter1,/NOEXPAND_PATH
@@ -105,7 +105,7 @@ FILE_CHMOD,raw_directory_path+Date_Obs+PI+Target1+Filter3,/A_EXECUTE,/A_WRITE,/A
 ;-----------------------------------
 
 	; Reduced Data Folder:
-reduced_directory_path = '/data/rosa3/oldrosa1/Speckle/Data/Reconstructed/'
+reduced_directory_path = '/Reconstructed/'
 
 	; Have to create an individual path for each filter and each speckled/mid_processed/processed directory
 	
