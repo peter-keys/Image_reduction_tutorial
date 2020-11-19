@@ -170,7 +170,7 @@ tvim,ave_flat,/sc
 
 	; Take a random header file for the frame rate information
 	
-f = READFITS(files[6],exten=100,h,/SILENT)	
+f = READFITS(files[1],exten=100,h,/SILENT)	
 frame_rate_header = h[11]
 
 	; Save out the Average Dark/Flat in case it is needed in the future...
