@@ -18,63 +18,10 @@
 ;            3. annotated x and y axis 
 ;            4. simplified OPLOT capability
 ;            5. manual or automatic scaling with smooth or discreet colors
-;            6. special treatment of "invalid data" pixels
-;            7. display true color images
+;            6  special treatment of "invalid data" pixels
 ;
 ; INPUT    
 ;   a           image quantity
-;
-;               if A is a two dimensional array it is assumed to be an
-;               array of a physical quantity in the same units as specified
-;               in RANGE.  
-;
-;               if A is a three dimensional array it is assumed to be a 
-;               band-interleaved true color image in the form
-;               (3,nx,ny) or (nx,ny,3) [either form will work], where 
-;               nx and ny are the number of pixels in the x and y
-;               directions and the red, green and blue components are
-;               specified by the third index.  All keywords associated
-;               with scaling the image to the color key (e.g., SCALE,
-;               RANGE, CLEVELS, STITLE etc.) are disabled for true color
-;               images.
-;
-;               Before display the image array is scaled to the 0-255
-;               range using bytscl.  It is then routed through the
-;               color tables. The red color table array contains the
-;               intensity translation table for the red image, and so
-;               forth. Assuming that the color tables have been loaded
-;               with the vectors R, G, and B, a pixel with a color
-;               value of (r, g, b) is displayed with a color of (R[r],
-;               G[g], B[b]). As with other devices, a color table
-;               value of 255 represents maximum intensity, while 0
-;               indicates an absence of the color. To pass the RGB
-;               pixel values without change, load the red, green and
-;               blue color tables with a ramp with a slope of 1.0:
-;               TVLCT, INDGEN(256), INDGEN(256), INDGEN(256) or with
-;               the LOADCT procedure: LOADCT, 0 ; Load standard
-;               black/white table.
-;
-;               True color images can be written to postscript using
-;
-;                    toggle,/color
-;                    tvim,a
-;                    toggle
-;
-;               NOTE: To write a gif image you'll have to use color_quan to 
-;                     quantize the true color image into 256 colors. This
-;                     procedure produces a pretty lousy result:
-;
-;                     v=color_quan(a,3,r,g,b,color=256)
-;                     tvlct,r,g,b
-;                     tvim,v
-;                     gif_write,'junk.gif'
-;
-;               NOTE: if you have a pc you can use a screen capture 
-;                     to cut and paste the image into a document ("ALT
-;                     print-screen" copies the screen into the paste
-;                     buffer).
-;
-;               
 ;
 ; Optional keyword input:
 ;
@@ -144,7 +91,7 @@
 ;  position
 ;    specifies the lower left and upper right TVIM frame position in
 ;    normal coordinates.  When set POSITION overides the setting of
-;    ASPECT, and disables screen blanking for new plots.
+;    ASPECT.
 ;
 ;  noaxis
 ;    if set do not draw x and y numbered axis around image. Instead
@@ -312,31 +259,30 @@
 ;
 ; EXAMPLES:
 ;
-;;;    Plot a GIF image with its own preset RGB
-;;;    table (perhaps from a digitized video image)
+;;    Plot a GIF image with its own preset RGB
+;;    table (perhaps from a digitized video image)
 ;
 ; window,colors=256            ; set up a private color map
 ; read_gif,'/home/paul/gif/el-nino.gif',im,r,g,b
 ; tvlct,r,g,b
 ; tvim,im,/c_map
-;;;
-;;;
-;;;    Plot an image with descreet greyscale values to a printer
-;;;    which has its own hard-wired color table. check documentation of gray.pro
+;;
+;;
+;;    Plot an image with descreet greyscale values to a printer
+;;    which has its own hard-wired color table.
 ;
 ; im=randata(128,128,s=4)
 ; immx=max(im) & immn=min(im)
 ; !p.multi=[0,2,2]
-; loadct,5
-; tvim,im,/scale,range=[immn,immx],color=gray(4)
-; tvim,im,/scale,range=[immn,immx],color=gray(5)
-; tvim,im,/scale,range=[immn,immx],color=gray(8)
-; tvim,im,/scale,range=[immn,immx],color=gray(10)
-;;;
-;;;
-;;;    Display a map of surface types (green=veg, blue=water, red=sand)
-;;;    Notice how RANGE is used to associate physical values with colors.
-;;;    (use im from the previous example)
+; tvim,im,/scale,colors=!p.color*indgen(4)/3.,range=[immn,immx]
+; tvim,im,/scale,colors=!p.color*indgen(5)/4.,range=[immn,immx]
+; tvim,im,/scale,colors=!p.color*indgen(8)/7.,range=[immn,immx]
+; tvim,im,/scale,colors=!p.color*indgen(10)/9.,range=[immn,immx]
+;;
+;;
+;;    Display a map of surface types (green=veg, blue=water, red=sand)
+;;    Notice how RANGE is used to associate physical values with colors.
+;;    (use im from the previous example)
 ;
 ; im=randata(128,128,s=4)
 ; immx=max(im) & immn=min(im) & delim=immx-immn
@@ -356,10 +302,10 @@
 ; range=[immn-.25*delim,immx+.25*delim,delim/2]
 ; lbl=[' veg!c region 1',' water!c region 2',' sand!c region 3']
 ; tvim,im,colors=colors,range=range,/scale,labels=lbl,lch=2,rmarg=2,pchar=1.2
-;;;
-;;;   Display the image from previous example and overlay a contour plot
-;;;
-; !p.multi=0
+;;
+;;
+;;   Display the image from previous example and overlay a contour plot
+;;
 ; loadct,5
 ; im=randata(128,128,s=4)
 ; immx=max(im) & immn=min(im) & delim=immx-immn
@@ -373,13 +319,13 @@
 ; contour,im,xx,yy,levels=clevels,/overplot
 ;
 ;
-;;;    NOTE: You might prefer the results obtained from procedure CONFILL.
+;;    NOTE: You might prefer the results obtained from procedure CONFILL.
 ;         
 ; confill,im,xx,yy,/asp,levels=clevels
-;;;
-;;; 
-;;;    Display a grey scale image and annotate certain points in color
-;;;
+;;
+;; 
+;;    Display a grey scale image and annotate certain points in color
+;;
 ; loadct,0
 ; dcolors
 ; tvim,im,/scale,nbotclr=11                    ; reserve some colors at bottom
@@ -387,50 +333,38 @@
 ; yy=interpolate([40,80],randomu(iseed,10))
 ; plots,xx,yy,psym=2,color=1+indgen(10)
 ;  
-;;;
-;;;   inset an image onto a line plot
-;;;
-;
-;     !p.multi=0
-;     loadct,0
-;     xy=randata(100,100,s=3)
-;     plot,xy[*,40]
-;     tvim,xy,pos=boxpos(/cur),title='transect',pcharsize=.7
-;     oplot,[0,99],[40,40]
-;
-;;;
-;;; 
-;;;    Display a grey scale image and show nodata values in red
-;;;
+;;
+;; 
+;;    Display a grey scale image and show nodata values in red
+;;
 ; loadct,0
 ; im=randata(100,100,s=4.5)
 ; im(randomu(iseed,50)*9999)=-999.
 ; tvim,im,/scale,nodata=-999.,rgb_nodata=[255,0,0]
 ;  
-;;;
-;;;
-;;;    Postscript output with a reversed color scale.  Because the
-;;;    background color is always RGB=(255,255,255) you must set the
-;;;    default color, !p.color, to a dark color if you want good contrast
-;;;    between the axis labels and the white paper.   According to 
-;;;    Didier's reversed color table a color index of 255 should produce
-;;;    black, but for some reason !p.color=255 doesn't work right.
-;;;    I think IDL is iterpreting !p.color=255 in some special way.
-;;;    So instead use !p.color=254; this seems to work fine.
-;;;
+;;
+;;
+;;    Postscript output with a reversed color scale.  Because the
+;;    background color is always RGB=(255,255,255) you must set the
+;;    default color, !p.color, to a dark color if you want good contrast
+;;    between the axis labels and the white paper.   According to 
+;;    Didier's reversed color table a color index of 255 should produce
+;;    black, but for some reason !p.color=255 doesn't work right.
+;;    I think IDL is iterpreting !p.color=255 in some special way.
+;;    So instead use !p.color=254; this seems to work fine.
+;;
 ; toggle,/color
 ; loadct,28
 ; !p.color=254              ; don't use 255, don't ask me why
 ; tvim,dist(20),/scale
 ; toggle
 ;               
-;;;
-;;; display data defined on a regular LAT-LON grid onto a given map 
-;;; projection.  USE MAP_SET and MAP_IMAGE to create the map projection
-;;; and to warp the image.  Then use BOXPOS to position the TVIM frame
-;;; to correctly register the map and image
+;;
+;; display data defined on a regular LAT-LON grid onto a given map 
+;; projection.  USE MAP_SET and MAP_IMAGE to create the map projection
+;; and to warp the image.  Then use BOXPOS to position the TVIM frame
+;; to correctly register the map and image
 ;
-; w8x11
 ; IMAGE = sin(!pi*findrng(0,24,200))#sin(!pi*findrng(0,12,200))
 ; !p.multi=[0,1,2]
 ; map_set,45,0,/ortho,/advance,pos=boxpos(/aspect)
@@ -441,73 +375,20 @@
 ;     title='Unwarped data',xtitle='Longitude',ytitle='Latitude'
 ; map_set,0,0,/cyl,pos=boxpos(/get),/grid,/cont,/noerase ; draw map
 ;
-;;; use MAP_SET2 to mask out land areas. Note that the example below is
-;;; unusual.   MAP_SET2 doesn't always produce such nicely filled land areas.
-;;; Typically one must run MAP_SET2 with /SAVE
-;;; to create a ascii file containing the continental boundary lat-lon
-;;; coordinates. Then use an editor  to group the continental coordinates 
-;;; line segments to form closed contours which POLYFILL can understand 
-;;; (the call to POLYFILL is enabled by setting con_color).
-;;;  
+;; use MAP_SET2 to mask out land areas. Note that the example below is
+;; unusual.   MAP_SET2 doesn't always produce such nicely filled land areas.
+;; Typically one must run MAP_SET2 with /SAVE
+;; to create a ascii file containing the continental boundary lat-lon
+;; coordinates. Then use an editor  to group the continental coordinates 
+;; line segments to form closed contours which POLYFILL can understand 
+;; (the call to POLYFILL is enabled by setting con_color).
+;;  
 ;
 ; image=randata(256,256,s=2.5)
-; tvim,image,yrange=[-65.1,-64],xrange=[-64.5,-62]
-; map_set5,-64,-64,/cont,limit=[-65.1,-64.5,-64,-62],/pos,/noerase
-; map_set,-64,-64,/cont,limit=[-65.1,-64.5,-64,-62],pos=bospos(/get),/noerase
-;
-;;; display a true color image
-;
-; a=fltarr(100,100,3)
-; g=bytscl(replicate(1,100)#(findgen(100)>30))
-; a(*,*,0)=rotate(g,1)
-; a(*,*,1)=g
-; a(*,*,2)=rotate(g,3)
-; !p.multi=[0,2,2]
-; loadct,0
-; tvim,a,xrange=[100,300],yrange=[0,10],title='true color image'
-; tvim,a(*,*,0),range=[0,255],title='red component'
-; tvim,a(*,*,1),range=[0,255],title='green component'
-; tvim,a(*,*,2),range=[0,255],title='blue component'
-;
-;;; other interleaving possibility
-;
-; a=fltarr(3,100,100)
-; g=bytscl(replicate(1,100)#(findgen(100)>30))
-; a(0,*,*)=rotate(g,1)
-; a(1,*,*)=g
-; a(2,*,*)=rotate(g,3)
-; !p.multi=[0,2,2]
-; loadct,0
-; tvim,a,xrange=[100,300],yrange=[0,10],title='true color image'
-; tvim,a(0,*,*),range=[0,255],title='red component'
-; tvim,a(1,*,*),range=[0,255],title='green component'
-; tvim,a(2,*,*),range=[0,255],title='blue component'
-; 
-;
-;;; display a sparse data field superposed on a background topography.
-;;; topography shown with a gray scale, data filled areas shown with
-;;; color table 5
-;
-; minval=.1                   ; minimum physical value of interest
-; nbotclr=30                  ; number of colors assigned to gray scale
-; maxgray=240                 ; max gray scale intensity (240 out of 255)
-; topo=randata(200,200,s=4)   ; background topography variable (just for looks)
-; data=randata(200,200,s=2)   ; data variable
-; loadct,5                    ; color table 5
-;
-; topo=topo-max(topo)
-; rngdata=max(data)-minval
-; rngtopo=-min(topo)
-; topo=nbotclr/(!d.n_colors<256.-nbotclr)*rngdata*topo/rngtopo
-; topo=topo+minval
-; ii=where(data lt minval)
-; data[ii]=topo[ii]
-; r=findrng(0,maxgray,nbotclr) & g=r & b=r
-; tvlct,r,g,b,0
-; tvim,data,rmarg=1
-; color_key,range=data>minval,nbotclr=nbotclr
-; 
-;;;
+; tvim,image
+; map_set2,-64,-64,/cont,limit=[-65.1,-64.5,-64,-62],/ortho,con_col=100,$
+;           pos=boxpos(/get),/noerase,/grid
+;;               
 ; AUTHOR:       Paul Ricchiazzi    oct92 
 ;               Earth Space Research Group, UCSB
 ;
@@ -532,8 +413,6 @@
 ; 06sep95: color indecies used in plot now run from 1 to !d.ncolors-2
 ; 24jul96: do a REFORM(a) to allow tvim,a(1,*,*) to work with no complaints
 ; 01sep96: added the RCT keyword
-; 17may00; treat true color images
-; 01dec00; when position keyword is set, add to current page 
 ;-
 
 pro tvim,a,scale=scale,range=range,xrange=xrange,yrange=yrange,$
@@ -548,11 +427,6 @@ if n_params() eq 0 then begin
   return
 endif  
 
-if keyword_set(position) then begin
-  psave=!p.multi
-  !p.multi=[1,1,1]
-endif
-
 if keyword_set(pcharsize) eq 0 then begin
   if !p.charsize eq 0 then pcharsize=1 else pcharsize=!p.charsize
 endif
@@ -562,30 +436,9 @@ if keyword_set(lcharsize) eq 0 then begin
                                   else lcharsize=pcharsize
 endif
 
-if not keyword_set(interp) then interp=0
-
 sz=size(reform(a))
-
-if sz(0) eq 3 then begin
-  true_color=1
-  case 1 of 
-    sz(1) eq 3: true_index=1
-    sz(3) eq 3: true_index=3
-    else: message,'true color array must be of form (nx,ny,3) or (3,nx,ny)'
-  end 
-  if true_index eq 1 then begin
-    nx=sz(2)
-    ny=sz(3)
-  endif else begin
-    nx=sz(1)
-    ny=sz(2)
-  endelse
-endif else begin
-  true_color=0
-  nx=sz(1)
-  ny=sz(2)
-endelse
-
+nx=sz(1)
+ny=sz(2)
 nxm=nx-1
 nym=ny-1
 plot, [0,1],[0,1],/nodata,xstyle=4,ystyle=4,charsize=pcharsize
@@ -595,13 +448,7 @@ xsize=px(1)-px(0)
 ysize=py(1)-py(0)
 
 if keyword_set(scale) or keyword_set(rmarg) then begin
-  if keyword_set(rmarg) eq 0 then begin
-    if(!d.name eq "WIN") then begin
-      rmarg=2.
-    endif else begin
-      rmarg=1.
-    endelse
-  endif
+  if keyword_set(rmarg) eq 0 then rmarg=1.
   xmarg=!d.x_ch_size*(4+4*lcharsize)
   if keyword_set(stitle) then xmarg=xmarg+2*!d.y_ch_size*lcharsize
   xsize=xsize-rmarg*xmarg
@@ -623,66 +470,44 @@ if keyword_set(position) then begin
 endif
 
 pos=[px(0),py(0),px(1),py(1)]
-
-if true_color then begin  ; true color image
-
-  if !d.name eq 'PS' then begin
-    tv,bytscl(a),px(0),py(0),xsize=xsize,ysize=ysize,/device,true=true_index
-  endif else begin
-    mone=interp
-    if interp lt 2 then begin
-      fx=(nx-1)*findgen(xsize)/(xsize-1)
-      fy=(ny-1)*findgen(ysize)/(ysize-1)
-    endif else begin
-      fx=nx*findgen(xsize)/(xsize-1)-.5
-      fy=ny*findgen(ysize)/(ysize-1)-.5
-    endelse
-    device,decomposed=1
-    if true_index eq 3 $
-      then tv,interpolate(bytscl(a),fx,fy,indgen(3),/grid),px(0),py(0),true=3 $
-      else tv,interpolate(bytscl(a),indgen(3),fx,fy,/grid),px(0),py(0),true=1 
-    device,decomposed=0
-  endelse
-
-endif else begin
-  
 ;
 ;max_color=!d.n_colors-1
-  max_color=(!d.n_colors-2) < 255
+max_color=(!d.n_colors-2) < 255
 ;
-  if keyword_set(title) eq 0 then title=''
+if keyword_set(title) eq 0 then title=''
+
+amax=float(max(a))
+amin=float(min(a))
+;print, 'a      min and max  ',   amin,amax
+
+num_range=n_elements(range)
+
+if n_elements(nodata) then begin
+  if n_elements(rgb_nodata) eq 0 then rgb_nodata=[0,0,0]
+  iinodata=where(a eq nodata,ncnd)
+  iidata=where(a ne nodata,ncgd)
+  if ncgd gt 0 then begin
+    amin=float(min(a(iidata)))
+    amax=float(max(a(iidata)))
+    tvlct,rgb_nodata(0),rgb_nodata(1),rgb_nodata(2),1
+    nbotclr=2
+  endif
+endif else begin
+  iinodata=-1
+endelse
   
-  amax=float(max(a))
-  amin=float(min(a))
-  
-  num_range=n_elements(range)
-  
-  if n_elements(nodata) then begin
-    if n_elements(rgb_nodata) eq 0 then rgb_nodata=[0,0,0]
-    iinodata=where(a eq nodata,ncnd)
-    iidata=where(a ne nodata,ncgd)
-    if ncgd gt 0 then begin
-      amin=float(min(a(iidata)))
-      amax=float(max(a(iidata)))
-      tvlct,rgb_nodata(0),rgb_nodata(1),rgb_nodata(2),1
-      nbotclr=2
-    endif
-  endif else begin
-    iinodata=-1
-  endelse
-  
-  if num_range eq 1 then message,'must specify either 2 or 3 elements of RANGE'
-  
-  if num_range eq 0 then begin
-    if amin eq amax then begin
-      case 1 of
-        amax eq 0.: rng=[-1,1.]
-        amax gt 0.: rng=[0,2*amax]
-        amax lt 0.: rng=[2*amax,0]
-      endcase
-    endif else BEGIN
-      CASE n_elements(clip) OF
-        1:if clip ge 0 then begin
+if num_range eq 1 then message,'must specify either 2 or 3 elements of RANGE'
+
+if num_range eq 0 then begin
+  if amin eq amax then begin
+    case 1 of
+      amax eq 0.: rng=[-1,1.]
+      amax gt 0.: rng=[0,2*amax]
+      amax lt 0.: rng=[2*amax,0]
+    endcase
+  endif else BEGIN
+    CASE n_elements(clip) OF
+      1:if clip ge 0 then begin
           rng=prank(a,[clip,100-clip])
         endif else begin
           clp=-2*clip+1
@@ -690,86 +515,87 @@ endif else begin
           iy1=-clip & iy2=ny+clip
           rng=[min((median(a,clp))(ix1:ix2,iy1:iy2),max=mx),mx]
         endelse
-        2:rng=prank(a,clip)
-        else:rng=[amin,amax] 
-      endcase
-    endelse
-  endif else begin
-    rng=range(0:1)
-    if num_range eq 3 then inc=range(2) else inc=0
+      2:rng=prank(a,clip)
+      else:rng=[amin,amax] 
+    endcase
   endelse
-  
-  ncolors=n_elements(colors)
-  
-  case 1 of
-    
-    ncolors ne 0 : begin
-      if keyword_set(rct) then message,'rct invalid with color specificaton'
-      case num_range of 
-        0:begin
-          aa=colors(fix(reform(a)))
-          rng=[0,ncolors]
-          inc=1
+endif else begin
+  rng=range(0:1)
+  if num_range eq 3 then inc=range(2) else inc=0
+endelse
+
+ncolors=n_elements(colors)
+
+case 1 of
+
+  ncolors ne 0 : begin
+    if keyword_set(rct) then message,'rct invalid with color specificaton'
+    case num_range of 
+      0:begin
+         aa=colors(fix(reform(a)))
+         rng=[0,ncolors]
+         inc=1
         end
-        2:begin
-          clrinc=(rng(1)-rng(0))/ncolors
-          aa=colors(fix((reform(a)-range(0))/clrinc))
+      2:begin
+         clrinc=(rng(1)-rng(0))/ncolors
+         aa=colors(fix((reform(a)-range(0))/clrinc))
         end
-        3:begin
-          aa=colors(fix((reform(a)-range(0))/range(2)))
-          inc=range(2)
-          rng=[range(0),range(0)+ncolors*inc]
+      3:begin
+         aa=colors(fix((reform(a)-range(0))/range(2)))
+         inc=range(2)
+         rng=[range(0),range(0)+ncolors*inc]
         end
-      endcase
-    end
-    
-    keyword_set(c_map) eq 1 : begin
-      if keyword_set(rct) then message,'rct invalid with c_map specificaton'
-      aa=byte(reform(a))
-      rng(0)=0
-      rng(1)=max_color
-    end
-    
-    else: begin
+    endcase
+  end
+
+  keyword_set(c_map) eq 1 : begin
+    if keyword_set(rct) then message,'rct invalid with c_map specificaton'
+    aa=byte(reform(a))
+    rng(0)=0
+    rng(1)=max_color
+  end
+
+  else: begin
 ;    if keyword_set(nbotclr) eq 0 then nbotclr=0 else nbotclr=nbotclr
-      if keyword_set(nbotclr) eq 0 then nbotclr=1 else nbotclr=nbotclr
-      max_color=max_color-nbotclr
-      aa=nbotclr+max_color*((float(reform(a))-rng(0))/(rng(1)-rng(0)) >0.<1.)
-      if keyword_set(rct) then aa=max_color+2*nbotclr-aa
-    end
-  endcase
-  
+    if keyword_set(nbotclr) eq 0 then nbotclr=1 else nbotclr=nbotclr
+    max_color=max_color-nbotclr
+    aa=nbotclr+max_color*((float(reform(a))-rng(0))/(rng(1)-rng(0)) > 0. < 1.)
+    if keyword_set(rct) then aa=max_color+2*nbotclr-aa
+  end
+endcase
+
 ;
-  posbar=[px(1)+!d.x_ch_size,py(0)]
-  if keyword_set(scale) then begin
-    if scale eq 2 then step=1 else step=0
-    if not keyword_set(barwidth) then barwidth=1
-    if ncolors eq 0 then begin
-      color_key,pos=posbar,ysize=ysize,range=rng,inc=inc,step=step,$
+posbar=[px(1)+!d.x_ch_size,py(0)]
+if keyword_set(scale) then begin
+  if scale eq 2 then step=1 else step=0
+  if not keyword_set(barwidth) then barwidth=1
+  if ncolors eq 0 then begin
+    color_key,pos=posbar,ysize=ysize,range=rng,inc=inc,step=step,$
          title=stitle,charsize=lcharsize,labels=labels,nbotclr=nbotclr,$
          clevels=clevels,barwidth=barwidth,rct=rct
-    endif else begin
-      color_key,pos=posbar,ysize=ysize,range=rng,inc=inc,title=stitle,$
-         charsize=lcharsize,colors=colors,labels=labels,clevels=clevels,$
-         barwidth=barwidth,rct=rct
-    endelse
-  endif
-  
-  if iinodata(0) ne -1 then aa(iinodata)=1
-  
-  if !d.name eq 'PS' then begin
-    tv,aa,px(0),py(0),xsize=xsize,ysize=ysize,/device
   endif else begin
-    mone=interp
-    if interp lt 2 then begin
-      tv,congrid(aa,xsize,ysize,interp=interp,minus_one=mone),px(0),py(0)
-    endif else begin
-      tv,interpolate(aa,nx*findgen(xsize)/(xsize-1)-.5,$
-                     ny*findgen(ysize)/(ysize-1)-.5,/grid),px(0),py(0)
-    endelse
+    color_key,pos=posbar,ysize=ysize,range=rng,inc=inc,title=stitle,$
+           charsize=lcharsize,colors=colors,labels=labels,clevels=clevels,$
+           barwidth=barwidth,rct=rct
   endelse
-  
+endif
+
+if not keyword_set(interp) then interp=0
+
+if iinodata(0) ne -1 then aa(iinodata)=1
+
+if !d.name eq 'PS' then begin
+  tv,aa,px(0),py(0),xsize=xsize,ysize=ysize,/device
+endif else begin
+  mone=interp
+  if interp lt 2 then begin
+    tv,congrid(aa,xsize,ysize,interp=interp,minus_one=mone),px(0),py(0)
+  endif else begin
+    tv,interpolate(aa,nx*findgen(xsize)/(xsize-1)-.5,$
+                      ny*findgen(ysize)/(ysize-1)-.5,/grid),px(0),py(0)
+  endelse
 endelse
+
 ;
 if keyword_set(xtitle) eq 0 then xtitle=''
 if keyword_set(ytitle) eq 0 then ytitle=''
@@ -795,8 +621,6 @@ case 1 of
                          xtitle=xtitle,ytitle=ytitle,xrange=xrng,yrange=yrng,$
                          position=pos,/noerase,/device,charsize=pcharsize
 endcase
-
-if keyword_set(position) then !p.multi=psave
 ;
 end
 
