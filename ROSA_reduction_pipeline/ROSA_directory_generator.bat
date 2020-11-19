@@ -124,10 +124,10 @@ FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter3+'mid_processed/',/
 FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter3+'processed/',/NOEXPAND_PATH
 FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter3+'calib/',/NOEXPAND_PATH
 
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'speckled/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'mid_processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'processed/',/NOEXPAND_PATH
-FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'calib/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'speckled/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'mid_processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'processed/',/NOEXPAND_PATH
+;FILE_MKDIR,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'calib/',/NOEXPAND_PATH
 
 	; Change the permissions if you need to (QUB people should do this)
 FILE_CHMOD,reduced_directory_path+Date_Obs,/A_EXECUTE,/A_WRITE,/A_READ
@@ -151,11 +151,11 @@ FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter3+'mid_processed/',/
 FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter3+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
 FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter3+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
 
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
-FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4,/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'speckled/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'mid_processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'processed/',/A_EXECUTE,/A_WRITE,/A_READ
+;FILE_CHMOD,reduced_directory_path+Date_Obs+PI+Target1+Filter4+'calib/',/A_EXECUTE,/A_WRITE,/A_READ
 
 ;*************************************************************************************
 	; ONLY RUN IF YOU HAVE A SECOND TARGET ON A SINGLE DAY 
